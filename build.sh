@@ -1,5 +1,13 @@
 #!/bin/sh
 
+rm -rf .repo/local_manifests && echo "Removed Local Manifests"
+mkdir -p .repo/local_manifests
+touch .repo/local_manifests/manifest.xml
+
+repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs --depth=1
+
+curl https://raw.githubusercontent.com/kaii-lb/ck8n_everest/refs/heads/main/manifest.xml -o .repo/local_manifests/manifest.xml
+
 cd device/tecno/CK8n
 
 echo "" >> lineage_CK8n.mk
@@ -20,6 +28,10 @@ echo "WITH_GAPPS := true" >> lineage_CK8n.mk
 echo "" >> lineage_CK8n.mk
 
 cd /tmp/src/android
+
+echo -e "--> Starting resync at $(date)."
+/opt/crave/resync.sh
+echo -e "--> Resync done at $(date)."
 
 export TARGET_RELEASE=ap2a
 . build/envsetup.sh
