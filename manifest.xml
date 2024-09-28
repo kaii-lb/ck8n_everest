@@ -1,0 +1,7 @@
+<manifest>
+  <remote name="github123" fetch="https://github.com" />
+
+  <project name="CK8n/device_tecno_CK8n-kernel" path="kernel/tecno/CK8n" remote="github123" revision="14" />
+  <project name="CK8n/android_device_tecno_CK8n" path="device/tecno/CK8n" remote="github123" revision="lineage-21" />
+  <project name="CK8n/android_vendor_tecno_CK8n" path="vendor/tecno/CK8n" remote="github123" revision="lineage-21" />  
+</manifest>
