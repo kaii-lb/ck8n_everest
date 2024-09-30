@@ -4,7 +4,7 @@ rm -rf .repo/local_manifests && echo "Removed Local Manifests"
 mkdir -p .repo/local_manifests
 touch .repo/local_manifests/manifest.xml
 
-repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs --depth=1
+repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs
 
 curl https://raw.githubusercontent.com/kaii-lb/ck8n_everest/refs/heads/main/manifest.xml -o .repo/local_manifests/manifest.xml
 
