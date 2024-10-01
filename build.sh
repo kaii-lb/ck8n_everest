@@ -2,9 +2,8 @@
 
 rm -rf .repo/local_manifests && echo "Removed Local Manifests"
 mkdir -p .repo/local_manifests
-touch .repo/local_manifests/manifest.xml
 
-repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs
+repo init -u https://github.com/ProjectEverest/manifest -b 14 --git-lfs --depth=1
 
 curl https://raw.githubusercontent.com/kaii-lb/ck8n_everest/refs/heads/main/manifest.xml -o .repo/local_manifests/manifest.xml
 
@@ -33,7 +32,11 @@ echo -e "--> Starting resync at $(date)."
 /opt/crave/resync.sh
 echo -e "--> Resync done at $(date)."
 
-export TARGET_RELEASE=ap2a
+cd build/make
+curl https://raw.githubusercontent.com/kaii-lb/treble_everest/ced06f3bab5f434ae4c78603394d45cda11ba423/patches/personal/platform_build/0006-forcibly-switch-to-ap2a.patch -o ap2a.patch
+git am ap2a.patch
+cd ../../
+
 . build/envsetup.sh
 
 lunch lineage_CK8n-userdebug
