@@ -26,6 +26,9 @@ echo "# Gapps things" >> lineage_CK8n.mk
 echo "WITH_GAPPS := true" >> lineage_CK8n.mk
 echo "" >> lineage_CK8n.mk
 
+grep -v "\$(call inherit-product, frameworks/native/build/phone-xhdpi-8192-dalvik-heap.mk)" device.mk > removed.mk
+mv removed.mk device.mk
+
 cd /tmp/src/android
 
 echo -e "--> Starting resync at $(date)."
