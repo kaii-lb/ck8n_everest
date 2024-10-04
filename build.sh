@@ -10,6 +10,9 @@ curl https://raw.githubusercontent.com/kaii-lb/ck8n_everest/refs/heads/main/mani
 cd device/tecno/CK8n
 
 echo "" >> lineage_CK8n.mk
+echo "# Boot Animation Resolution" >> lineage_CK8n.mk
+echo "TARGET_BOOT_ANIMATION_RES := 1080" >> lineage_CK8n.mk
+echo "" >> lineage_CK8n.mk
 echo "# Everest Specific Build Flags" >> lineage_CK8n.mk
 echo "EVEREST_MAINTAINER := kaii-lb" >> lineage_CK8n.mk
 echo "EVEREST_BUILD_TYPE := OFFICIAL" >> lineage_CK8n.mk
@@ -28,6 +31,11 @@ echo "" >> lineage_CK8n.mk
 
 grep -v "\$(call inherit-product, frameworks/native/build/phone-xhdpi-8192-dalvik-heap.mk)" device.mk > removed.mk
 mv removed.mk device.mk
+
+echo "" >> BoardConfig.mk
+echo "# Set selinux to permissive cuz DT isn't done" >> BoardConfig.mk
+echo "BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive" >> BoardConfig.mk
+echo "" >> BoardConfig.mk
 
 cd /tmp/src/android
 
