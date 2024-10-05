@@ -39,6 +39,9 @@ echo "" >> BoardConfig.mk
 
 cd /tmp/src/android
 
+export WITH_AFLTO=false
+export WITH_AFDO=false
+
 echo -e "--> Starting resync at $(date)."
 /opt/crave/resync.sh
 echo -e "--> Resync done at $(date)."
@@ -49,6 +52,11 @@ git am ap2a.patch
 cd ../../
 
 . build/envsetup.sh
+
+export WITH_AFLTO=false
+export WITH_AFDO=false
+
+m clean-libbase clean-libbinder
 
 lunch lineage_CK8n-userdebug
 
