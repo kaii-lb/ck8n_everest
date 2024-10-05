@@ -51,12 +51,12 @@ curl https://raw.githubusercontent.com/kaii-lb/treble_everest/ced06f3bab5f434ae4
 git am ap2a.patch
 cd ../../
 
+export TARGET_RELEASE=ap2a
 . build/envsetup.sh
+export TARGET_RELEASE=ap2a
 
 export WITH_AFLTO=false
 export WITH_AFDO=false
-
-m clean-libbase clean-libbinder
 
 lunch lineage_CK8n-userdebug
 
