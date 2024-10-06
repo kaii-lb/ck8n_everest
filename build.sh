@@ -47,13 +47,12 @@ echo -e "--> Starting resync at $(date)."
 echo -e "--> Resync done at $(date)."
 
 cd build/make
-curl https://raw.githubusercontent.com/kaii-lb/treble_everest/ced06f3bab5f434ae4c78603394d45cda11ba423/patches/personal/platform_build/0006-forcibly-switch-to-ap2a.patch -o ap2a.patch
+git reset --hard FETCH_HEAD
+curl https://raw.githubusercontent.com/kaii-lb/ck8n_everest/refs/heads/main/0001-nuke-any-ability-to-release-trunk_staging.patch -o ap2a.patch
 git am ap2a.patch
 cd ../../
 
-export TARGET_RELEASE=ap2a
 . build/envsetup.sh
-export TARGET_RELEASE=ap2a
 
 export WITH_AFLTO=false
 export WITH_AFDO=false
